@@ -137,4 +137,82 @@ public class BoardDAO {
 		return bVo;
 
 	}
+
+	public void updateBoard(BoardVO bVo) {
+		String sql = "update bboard set name=?, email=?, pass=?, " + "title=?, content=? where num=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, bVo.getName());
+			pstmt.setString(2, bVo.getEmail());
+			pstmt.setString(3, bVo.getPass());
+			pstmt.setString(4, bVo.getTitle());
+			pstmt.setString(5, bVo.getContent());
+			pstmt.setInt(6, bVo.getNum());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
+
+	public BoardVO checkPassWord(String pass, String num) {
+		String sql = "select * from bboard where pass=? and num=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardVO bVo = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, pass);
+			pstmt.setString(2, num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				bVo = new BoardVO();
+
+				bVo.setNum(rs.getInt("num"));
+				bVo.setName(rs.getString("name"));
+				bVo.setEmail(rs.getString("email"));
+				bVo.setPass(rs.getString("pass"));
+				bVo.setTitle(rs.getString("title"));
+				bVo.setContent(rs.getString("content"));
+				bVo.setWritedate(rs.getTimestamp("writedate"));
+				bVo.setReadcount(rs.getInt("readcount"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bVo;
+	}
+
+	public void deleteBoard(String num) {
+		String sql = "delete bboard where num=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, num);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
