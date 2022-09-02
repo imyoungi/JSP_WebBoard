@@ -16,7 +16,7 @@
 		<table class="List">
 			<tr>
 				<td colspan="5" style="border: white; text-align: right"><a
-					href="BoardServlet?command=board_white_form">게시글 등록</a></td>
+					href="BoardServlet?command=board_write_form">게시글 등록</a></td>
 			</tr>
 			<tr>
 				<th>번호</th>
@@ -27,7 +27,7 @@
 			</tr>
 			<c:forEach var="board" items="${boardList }">
 				<tr class="record">
-					<td>${board.com }</td>
+					<td>${board.num }</td>
 					<td><a
 						href="BoardServlet?command=board_view&num=${ board.num}">${board.title}</a>
 					</td>

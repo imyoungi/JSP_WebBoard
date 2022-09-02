@@ -24,7 +24,7 @@ public class BoardDAO {
 	}
 
 	public List<BoardVO> selectAllBoards() {
-		String sql = "select * from BORDER order by num desc";
+		String sql = "select * from BBOARD order by num desc";
 
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		Connection conn = null;
