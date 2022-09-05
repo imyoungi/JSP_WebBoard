@@ -2,7 +2,9 @@ package com.saeyan.controller;
 
 import com.saeyan.controller.action.Action;
 import com.saeyan.controller.action.BaoardWriteAction;
+import com.saeyan.controller.action.BoardCheckPassAction;
 import com.saeyan.controller.action.BoardListAction;
+import com.saeyan.controller.action.BoardViewAction;
 import com.saeyan.controller.action.BoardWriteFormAction;
 
 public class ActionFactory {
@@ -27,6 +29,18 @@ public class ActionFactory {
 			action = new BoardWriteFormAction();
 		} else if (command.equals("board_write")) {
 			action = new BaoardWriteAction();
+		} else if (command.equals("board_view")) {
+			action = new BoardViewAction();
+		} else if (command.equals("board_check_pass")) {
+			action = new BoardCheckPassAction();
+		} else if (command.equals("board_check_pass_form")) {
+			action = new BoardCheckPassAction();
+		} else if (command.equals("board_update")) {
+			action = new BoardCheckPassAction();
+		} else if (command.equals("board_update_form")) {
+			action = new BoardCheckPassAction();
+		} else if (command.equals("board_delete")) {
+			action = new BoardCheckPassAction();
 		}
 		return action;
 	}
